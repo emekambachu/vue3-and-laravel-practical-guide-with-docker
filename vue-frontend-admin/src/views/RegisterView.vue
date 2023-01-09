@@ -60,7 +60,7 @@ export default {
 
         const submit = async () => {
             console.log(formData);
-            const {data} = await axios.post('http://localhost:8080/api/register', {
+            const {data} = await axios.post('register', {
                 first_name: firstName.value,
                 last_name: lastName.value,
                 email: email.value,

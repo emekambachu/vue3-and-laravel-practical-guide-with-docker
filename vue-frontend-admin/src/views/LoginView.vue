@@ -47,9 +47,13 @@ export default {
         const submit = async () => {
             console.log(form);
             const {data} = await axios.post('login', form, {
-                withCredentials: true
+                withCredentials: true,
             });
             console.log(data);
+
+            // Store token in local storage
+            localStorage.setItem('token', data.jwt);
+
             await router.push('/');
         }
 

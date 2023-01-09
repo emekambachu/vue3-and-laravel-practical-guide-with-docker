@@ -15,21 +15,43 @@
 <script>
 import Nav from "@/components/layouts/Nav.vue";
 import Menu from "@/components/layouts/Menu.vue";
+import {onMounted, onBeforeMount} from "vue";
+import axios from 'axios';
 
 export default {
     components: {
         Menu,
         Nav
     },
-    data: () => ({
 
-    }),
-    mounted(){
+    setup(){
+        onMounted(async () => {
+            // Get token from localstorage
+            let token = localStorage.getItem('token');
+            console.log('token: ' + token);
+            const {data} = await axios.get('user', {
+                withCredentials: true,
+                headers: {
+                    "Authorization" : "Bearer " + token,
+                    'Accept' : 'application/json',
+                },
+            });
+            console.log(data);
+        });
 
-    },
-
-    methods: {
-
+        // onBeforeMount(async () => {
+        //     // Get token from localstorage
+        //     let token = localStorage.getItem('token');
+        //     console.log('token: ' + token);
+        //     const {data} = await axios.get('user', {
+        //         withCredentials: true,
+        //         headers: {
+        //             "Authorization" : "Bearer " + token,
+        //             'Accept' : 'application/json',
+        //         },
+        //     });
+        //     console.log(data);
+        // });
     }
 }
 </script>

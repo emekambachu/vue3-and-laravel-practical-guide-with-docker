@@ -14,6 +14,7 @@ import "bootstrap";
 
 // global base url
 axios.defaults.baseURL = 'http://localhost:8080/api/';
+axios.defaults.withCredentials = true;
 
 const app = createApp(App);
 
